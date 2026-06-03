@@ -1,6 +1,6 @@
 "use client";
 
-import { humanTitle } from "@/lib/media";
+import { useI18n } from "@/i18n/LanguageContext";
 import { PublicImage } from "@/components/PublicImage";
 
 type Props = {
@@ -9,6 +9,7 @@ type Props = {
 };
 
 export function MarqueeRow({ files, reverse }: Props) {
+  const { t } = useI18n();
   if (files.length === 0) return null;
   const loop = [...files, ...files];
 
@@ -36,7 +37,7 @@ export function MarqueeRow({ files, reverse }: Props) {
             <div className="absolute inset-0 origin-center transition duration-500 group-hover/marquee:scale-[1.04]">
               <PublicImage
                 file={file}
-                alt={humanTitle(file)}
+                alt={t.portfolioSections.photoAlt}
                 fill
                 className="object-cover"
                 sizes="220px"

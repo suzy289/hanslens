@@ -18,8 +18,8 @@
 .DS_Store
 *.pem
 
-# Vidéos (souvent > 100 Mo — GitHub les refuse ; héberge-les ailleurs ou utilise Git LFS)
-public/**/*.mp4
+# Vidéos > 50 Mo (limite conseillée GitHub) — les fichiers légers restent versionnables
+# Supprimez les gros .mp4 localement ; seules les vidéos ≤ 50 Mo sont référencées dans le code.
 
 # debug
 npm-debug.log*

@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { useI18n } from "@/i18n/LanguageContext";
-import { humanTitle, publicUrl } from "@/lib/media";
+import { publicUrl } from "@/lib/media";
 
 type Props = {
   file: string;
@@ -13,8 +13,6 @@ export function VideoTile({ file, className = "" }: Props) {
   const { t } = useI18n();
   const ref = useRef<HTMLVideoElement>(null);
   const url = publicUrl(file);
-  const title = humanTitle(file);
-
   return (
     <a
       href={url}
@@ -30,7 +28,7 @@ export function VideoTile({ file, className = "" }: Props) {
           ref.current.currentTime = 0;
         }
       }}
-      aria-label={`${t.video.playAriaPrefix}${title}`}
+      aria-label={t.video.playAria}
     >
       <div className="relative aspect-video w-full">
         <video
@@ -49,14 +47,6 @@ export function VideoTile({ file, className = "" }: Props) {
               <path d="M8 5v14l11-7L8 5z" />
             </svg>
           </span>
-        </div>
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 p-4">
-          <span className="inline-flex rounded-full border border-sky-500/25 bg-sky-500/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-sky-200">
-            {t.video.badge}
-          </span>
-          <p className="font-display mt-2 line-clamp-2 text-base font-semibold text-white sm:text-lg">
-            {title}
-          </p>
         </div>
       </div>
     </a>

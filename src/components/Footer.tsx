@@ -18,12 +18,12 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-2">
           <div>
             <div className="flex items-center gap-3">
-              <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl border border-white/10 bg-surface-muted">
+              <div className="relative h-11 w-12 shrink-0 overflow-hidden rounded-xl border border-white/10 bg-black">
                 <PublicImage
                   file={LOGO_IMAGE}
                   alt={`Logo ${SITE.name}`}
                   fill
-                  className="object-cover"
+                  className="object-contain p-0.5"
                   sizes="44px"
                 />
               </div>
@@ -54,13 +54,13 @@ export function Footer() {
               </h3>
               <ul className="mt-4 space-y-2 text-sm text-zinc-400">
                 <li>
-                  <Link href="#travaux" className="hover:text-white">
+                  <Link href="#realisations" className="hover:text-white">
                     {t.footer.navWorks}
                   </Link>
                 </li>
                 <li>
-                  <Link href="#galerie" className="hover:text-white">
-                    {t.footer.navGallery}
+                  <Link href="#realisations" className="hover:text-white">
+                    {t.footer.navCategories}
                   </Link>
                 </li>
                 <li>

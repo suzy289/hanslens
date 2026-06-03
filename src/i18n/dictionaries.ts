@@ -6,8 +6,8 @@ export type Messages = {
   metaDescription: string;
   nav: {
     works: string;
+    categories: string;
     showreel: string;
-    gallery: string;
     services: string;
     about: string;
     contact: string;
@@ -32,36 +32,45 @@ export type Messages = {
     videosHint: string;
     photosTitle: string;
     photosHint: string;
-    rushTitle: string;
-    rushHint: string;
+    categoriesTitle: string;
+    categoriesHint: string;
   };
   showreel: {
     kicker: string;
     title: string;
-    hintBeforeFile: string;
-    hintAfterFile: string;
+    intro: string;
+    videoAria: string;
   };
   services: {
     kicker: string;
     headline: string;
     items: { title: string; desc: string; tags: string[] }[];
   };
-  portfolio: {
+  portfolioSections: {
     kicker: string;
     title: string;
     intro: string;
-  };
-  gallery: {
-    kicker: string;
-    title: string;
-    intro: string;
-    visualsCount: string;
-    cats: {
-      a740: { title: string; desc: string };
-      reportage: { title: string; desc: string };
-      "set-b": { title: string; desc: string };
-      "studio-170": { title: string; desc: string };
-      "brand-misc": { title: string; desc: string };
+    photosLabel: string;
+    videosLabel: string;
+    navAll: string;
+    navAria: string;
+    photoAlt: string;
+    categories: {
+      automotive: { title: string; desc: string };
+      "real-estate": { title: string; desc: string };
+      "commercial-ads": { title: string; desc: string };
+      "social-media": { title: string; desc: string };
+      bts: { title: string; desc: string };
+      corporate: { title: string; desc: string };
+      events: { title: string; desc: string };
+      "fashion-beauty": { title: string; desc: string };
+      "fitness-lifestyle": { title: string; desc: string };
+      "food-hospitality": { title: string; desc: string };
+      "lifestyle-photoshoot": { title: string; desc: string };
+      "medical-aesthetic": { title: string; desc: string };
+      "personal-branding": { title: string; desc: string };
+      photoshoot: { title: string; desc: string };
+      "product-shoot": { title: string; desc: string };
     };
   };
   about: {
@@ -101,7 +110,7 @@ export type Messages = {
     rights: string;
     legalHint: string;
     navWorks: string;
-    navGallery: string;
+    navCategories: string;
     navShowreel: string;
     navServices: string;
     navAbout: string;
@@ -109,8 +118,7 @@ export type Messages = {
     youtubeLbl: string;
   };
   video: {
-    badge: string;
-    playAriaPrefix: string;
+    playAria: string;
   };
 };
 
@@ -119,9 +127,9 @@ const fr: Messages = {
   metaDescription:
     "Portfolio montage vidéo, photographie et tournage — Hans Lens.",
   nav: {
-    works: "Travaux",
+    works: "Réalisations",
+    categories: "Catégories",
     showreel: "Showreel",
-    gallery: "Galerie",
     services: "Services",
     about: "À propos",
     contact: "Contact",
@@ -146,18 +154,18 @@ const fr: Messages = {
     ],
   },
   stats: {
-    videosTitle: "Vidéos au portfolio",
-    videosHint: "Fichiers .mp4 dans public",
-    photosTitle: "Images en galerie",
-    photosHint: "Photos & visuels",
-    rushTitle: "Créneaux rush",
-    rushHint: "Selon disponibilité",
+    videosTitle: "Vidéos présentées",
+    videosHint: "Sélection par catégorie",
+    photosTitle: "Photos présentées",
+    photosHint: "Sélection par catégorie",
+    categoriesTitle: "Catégories",
+    categoriesHint: "Automobile, food, corporate…",
   },
   showreel: {
     kicker: "Vidéo",
     title: "Showreel principal",
-    hintBeforeFile: "Fichier : ",
-    hintAfterFile: " — modifiable dans src/lib/media.ts.",
+    intro: "Sélection de réalisations — lecture avec le lecteur intégré.",
+    videoAria: "Showreel vidéo",
   },
   services: {
     kicker: "Services",
@@ -180,38 +188,76 @@ const fr: Messages = {
       },
     ],
   },
-  portfolio: {
+  portfolioSections: {
     kicker: "Portfolio",
-    title: "Travaux vidéo",
+    title: "Réalisations par catégorie",
     intro:
-      "{{count}} fichiers issus du dossier public. Survol pour prévisualiser, clic pour ouvrir la vidéo.",
-  },
-  gallery: {
-    kicker: "Galerie",
-    title: "Photographie en mouvement",
-    intro:
-      "Deux bandeaux défilants pour parcourir l’ensemble des clichés, puis des rangées classées par série (scroll horizontal, snap). Survol pour mettre une bande en pause.",
-    visualsCount: "visuels",
-    cats: {
-      a740: {
-        title: "Série A740",
-        desc: "Portraits & ambiances — même série visuelle.",
+      "{{sections}} univers créatifs — {{photos}} photos et {{videos}} vidéos en avant. Cliquez sur une catégorie pour accéder directement à la section.",
+    photosLabel: "photos",
+    videosLabel: "vidéos",
+    navAll: "Tout voir",
+    navAria: "Navigation par catégorie",
+    photoAlt: "Photo portfolio",
+    categories: {
+      automotive: {
+        title: "Automobile",
+        desc: "Shootings véhicules, salons et campagnes auto.",
       },
-      reportage: {
-        title: "Reportage _DSC",
-        desc: "Séquence DSLR, tons naturels.",
+      "real-estate": {
+        title: "Immobilier",
+        desc: "Visuels biens, architecture et ambiances intérieures.",
       },
-      "set-b": {
-        title: "Série B",
-        desc: "Sélections thématiques B1–B4.",
+      "commercial-ads": {
+        title: "Publicité",
+        desc: "Spots, pubs et contenus promotionnels.",
       },
-      "studio-170": {
-        title: "Studio & détails",
-        desc: "Plans serrés et textures.",
+      "social-media": {
+        title: "Réseaux sociaux",
+        desc: "Formats courts, reels et contenus digitaux.",
       },
-      "brand-misc": {
-        title: "Identité & divers",
-        desc: "Visuels brand, captures et hors-séries.",
+      bts: {
+        title: "Behind the scenes",
+        desc: "Coulisses de tournage et making-of.",
+      },
+      corporate: {
+        title: "Corporate",
+        desc: "Événements d’entreprise, signatures et institutions.",
+      },
+      events: {
+        title: "Événementiel",
+        desc: "Couvertures live, soirées et entertainment.",
+      },
+      "fashion-beauty": {
+        title: "Mode & beauté",
+        desc: "Lookbooks, tailleurs et univers premium.",
+      },
+      "fitness-lifestyle": {
+        title: "Fitness & lifestyle",
+        desc: "Sport, témoignages et contenus dynamiques.",
+      },
+      "food-hospitality": {
+        title: "Food & hospitality",
+        desc: "Gastronomie, bars, hôtels et restauration.",
+      },
+      "lifestyle-photoshoot": {
+        title: "Lifestyle",
+        desc: "Portraits et séries lifestyle en lumière naturelle.",
+      },
+      "medical-aesthetic": {
+        title: "Médical & esthétique",
+        desc: "Cliniques, spas et soins esthétiques.",
+      },
+      "personal-branding": {
+        title: "Personal branding",
+        desc: "Image de marque personnelle et storytelling.",
+      },
+      photoshoot: {
+        title: "Photoshoot",
+        desc: "Séances photo studio et éditoriales.",
+      },
+      "product-shoot": {
+        title: "Produit",
+        desc: "Packshots, parfums et visuels e-commerce.",
       },
     },
   },
@@ -306,8 +352,8 @@ const fr: Messages = {
     whatsappLbl: "WhatsApp · ",
     rights: "Tous droits réservés.",
     legalHint: "Mentions légales · politique de confidentialité (à ajouter)",
-    navWorks: "Travaux vidéo",
-    navGallery: "Galerie photo",
+    navWorks: "Réalisations",
+    navCategories: "Catégories portfolio",
     navShowreel: "Showreel",
     navServices: "Services",
     navAbout: "À propos",
@@ -315,8 +361,7 @@ const fr: Messages = {
     youtubeLbl: "YouTube ",
   },
   video: {
-    badge: "Vidéo",
-    playAriaPrefix: "Lire la vidéo : ",
+    playAria: "Lire la vidéo",
   },
 };
 
@@ -326,8 +371,8 @@ const en: Messages = {
     "Video editing, photography & production portfolio — Hans Lens.",
   nav: {
     works: "Work",
+    categories: "Categories",
     showreel: "Showreel",
-    gallery: "Gallery",
     services: "Services",
     about: "About",
     contact: "Contact",
@@ -352,18 +397,18 @@ const en: Messages = {
     ],
   },
   stats: {
-    videosTitle: "Videos in portfolio",
-    videosHint: ".mp4 files in /public",
-    photosTitle: "Gallery images",
-    photosHint: "Photo & visuals",
-    rushTitle: "Rush-ready slots",
-    rushHint: "Subject to availability",
+    videosTitle: "Featured videos",
+    videosHint: "Curated by category",
+    photosTitle: "Featured photos",
+    photosHint: "Curated by category",
+    categoriesTitle: "Categories",
+    categoriesHint: "Automotive, food, corporate…",
   },
   showreel: {
     kicker: "Video",
     title: "Main showreel",
-    hintBeforeFile: "Source file: ",
-    hintAfterFile: " — change it in src/lib/media.ts.",
+    intro: "A curated selection — play with the built-in player.",
+    videoAria: "Showreel video",
   },
   services: {
     kicker: "Services",
@@ -387,38 +432,76 @@ const en: Messages = {
       },
     ],
   },
-  portfolio: {
+  portfolioSections: {
     kicker: "Portfolio",
-    title: "Video work",
+    title: "Work by category",
     intro:
-      "{{count}} files from your public folder. Hover to preview, click to open the video.",
-  },
-  gallery: {
-    kicker: "Gallery",
-    title: "Photography in motion",
-    intro:
-      "Two infinite bands to browse every frame, then horizontal, snap-scrolling rows by series. Hover a band to pause the motion.",
-    visualsCount: "shots",
-    cats: {
-      a740: {
-        title: "A740 series",
-        desc: "Portraits & mood — one cohesive series.",
+      "{{sections}} creative fields — {{photos}} photos and {{videos}} videos highlighted. Pick a category to jump straight to that section.",
+    photosLabel: "photos",
+    videosLabel: "videos",
+    navAll: "View all",
+    navAria: "Category navigation",
+    photoAlt: "Portfolio photo",
+    categories: {
+      automotive: {
+        title: "Automotive",
+        desc: "Vehicle shoots, motor shows and auto campaigns.",
       },
-      reportage: {
-        title: "_DSC series",
-        desc: "DSLR selects, natural tones.",
+      "real-estate": {
+        title: "Real estate",
+        desc: "Property visuals, architecture and interiors.",
       },
-      "set-b": {
-        title: "B roll series",
-        desc: "Thematic selects B1–B4.",
+      "commercial-ads": {
+        title: "Commercial ads",
+        desc: "Spots, promos and branded films.",
       },
-      "studio-170": {
-        title: "Studio & macro",
-        desc: "Detail shots & texture.",
+      "social-media": {
+        title: "Social media",
+        desc: "Short-form, reels and digital content.",
       },
-      "brand-misc": {
-        title: "Identity & misc",
-        desc: "Branded visuals and one-offs.",
+      bts: {
+        title: "Behind the scenes",
+        desc: "On-set moments and making-of films.",
+      },
+      corporate: {
+        title: "Corporate",
+        desc: "Business events, signings and institutions.",
+      },
+      events: {
+        title: "Events & entertainment",
+        desc: "Live coverage, galas and entertainment.",
+      },
+      "fashion-beauty": {
+        title: "Fashion & beauty",
+        desc: "Lookbooks, tailoring and premium beauty.",
+      },
+      "fitness-lifestyle": {
+        title: "Fitness & lifestyle",
+        desc: "Sport, testimonials and dynamic stories.",
+      },
+      "food-hospitality": {
+        title: "Food & hospitality",
+        desc: "Dining, bars, hotels and hospitality brands.",
+      },
+      "lifestyle-photoshoot": {
+        title: "Lifestyle",
+        desc: "Portraits and lifestyle series in natural light.",
+      },
+      "medical-aesthetic": {
+        title: "Medical & aesthetic",
+        desc: "Clinics, spas and aesthetic treatments.",
+      },
+      "personal-branding": {
+        title: "Personal branding",
+        desc: "Personal brand films and storytelling.",
+      },
+      photoshoot: {
+        title: "Photoshoot",
+        desc: "Studio and editorial photo sessions.",
+      },
+      "product-shoot": {
+        title: "Product",
+        desc: "Packshots, fragrance and e-commerce visuals.",
       },
     },
   },
@@ -508,8 +591,8 @@ const en: Messages = {
     whatsappLbl: "WhatsApp · ",
     rights: "All rights reserved.",
     legalHint: "Legal notice · privacy policy (to add)",
-    navWorks: "Video work",
-    navGallery: "Photo gallery",
+    navWorks: "Selected work",
+    navCategories: "Portfolio categories",
     navShowreel: "Showreel",
     navServices: "Services",
     navAbout: "About",
@@ -517,8 +600,7 @@ const en: Messages = {
     youtubeLbl: "YouTube ",
   },
   video: {
-    badge: "Video",
-    playAriaPrefix: "Play video: ",
+    playAria: "Play video",
   },
 };
 

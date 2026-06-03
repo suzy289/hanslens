@@ -1,9 +1,8 @@
 import { About } from "@/components/About";
 import { Footer } from "@/components/Footer";
-import { PhotoGallery } from "@/components/PhotoGallery";
 import { Hero } from "@/components/Hero";
 import { Navbar } from "@/components/Navbar";
-import { PortfolioGrid } from "@/components/PortfolioGrid";
+import { PortfolioSections } from "@/components/PortfolioSections";
 import { Process } from "@/components/Process";
 import { Services } from "@/components/Services";
 import { Showreel } from "@/components/Showreel";
@@ -19,8 +18,7 @@ export default function Home() {
         <Stats />
         <Showreel />
         <Services />
-        <PortfolioGrid />
-        <PhotoGallery />
+        <PortfolioSections />
         <About />
         <Skills />
         <Process />

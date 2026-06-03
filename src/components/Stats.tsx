@@ -2,23 +2,28 @@
 
 import { motion } from "framer-motion";
 import { useI18n } from "@/i18n/LanguageContext";
-import { PUBLIC_IMAGES, PUBLIC_VIDEOS } from "@/lib/media";
+import { countPortfolioMedia, PORTFOLIO_SECTIONS } from "@/lib/hans-portfolio";
 
 export function Stats() {
   const { t } = useI18n();
+  const { photos, videos } = countPortfolioMedia();
 
   const items = [
     {
-      value: `${PUBLIC_VIDEOS.length}+`,
+      value: `${videos}+`,
       label: t.stats.videosTitle,
       hint: t.stats.videosHint,
     },
     {
-      value: `${PUBLIC_IMAGES.length}+`,
+      value: `${photos}+`,
       label: t.stats.photosTitle,
       hint: t.stats.photosHint,
     },
-    { value: "24/7", label: t.stats.rushTitle, hint: t.stats.rushHint },
+    {
+      value: `${PORTFOLIO_SECTIONS.length}`,
+      label: t.stats.categoriesTitle,
+      hint: t.stats.categoriesHint,
+    },
   ];
 
   return (

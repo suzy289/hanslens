@@ -6,22 +6,29 @@ import { useState } from "react";
 import { SITE } from "@/config/site";
 import { useI18n } from "@/i18n/LanguageContext";
 import { whatsappContactUrl } from "@/lib/whatsapp";
+import { PORTFOLIO_SECTIONS, sectionAnchor } from "@/lib/hans-portfolio";
 import { LOGO_IMAGE } from "@/lib/media";
 import { PublicImage } from "@/components/PublicImage";
 import { SocialLinks } from "@/components/SocialLinks";
 import { LanguageToggle } from "@/components/LanguageToggle";
+import type { Messages } from "@/i18n/dictionaries";
 
-const routes = [
-  { href: "#travaux", key: "works" as const },
+const mainRoutes = [
+  { href: "#realisations", key: "works" as const },
   { href: "#showreel", key: "showreel" as const },
-  { href: "#galerie", key: "gallery" as const },
   { href: "#services", key: "services" as const },
   { href: "#apropos", key: "about" as const },
   { href: "#contact", key: "contact" as const },
 ] as const;
 
+function categoryTitle(id: string, t: Messages): string {
+  const key = id as keyof Messages["portfolioSections"]["categories"];
+  return t.portfolioSections.categories[key]?.title ?? id;
+}
+
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [categoriesOpen, setCategoriesOpen] = useState(false);
   const { t } = useI18n();
   const whatsappHref = whatsappContactUrl(t.whatsapp.prefillMessage);
 
@@ -34,12 +41,12 @@ export function Navbar() {
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-4 sm:gap-3 sm:px-6">
         <Link href="#" className="flex min-w-0 items-center gap-3">
-          <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-xl border border-white/10 bg-surface-muted">
+          <div className="relative h-10 w-11 shrink-0 overflow-hidden rounded-xl border border-white/10 bg-black">
             <PublicImage
               file={LOGO_IMAGE}
               alt={`Logo ${SITE.name}`}
               fill
-              className="object-cover"
+              className="object-contain p-0.5"
               sizes="40px"
               priority
             />
@@ -52,8 +59,48 @@ export function Navbar() {
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-4 lg:flex">
-          {routes.map((l) => (
+        <nav className="hidden items-center gap-3 lg:flex">
+          {mainRoutes.slice(0, 1).map((l) => (
+            <Link key={l.href} href={l.href} className="text-sm text-zinc-400 transition hover:text-white">
+              {t.nav[l.key]}
+            </Link>
+          ))}
+
+          <div
+            className="relative"
+            onMouseEnter={() => setCategoriesOpen(true)}
+            onMouseLeave={() => setCategoriesOpen(false)}
+          >
+            <button
+              type="button"
+              className="flex items-center gap-1 text-sm text-zinc-400 transition hover:text-white"
+              aria-expanded={categoriesOpen}
+              aria-haspopup="true"
+            >
+              {t.nav.categories}
+              <svg className="h-3.5 w-3.5 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {categoriesOpen ? (
+              <div className="absolute left-0 top-full z-50 pt-2">
+                <div className="grid w-[min(90vw,520px)] grid-cols-2 gap-1 rounded-xl border border-white/10 bg-surface p-2 shadow-xl">
+                  {PORTFOLIO_SECTIONS.map((sec) => (
+                    <Link
+                      key={sec.id}
+                      href={`#${sectionAnchor(sec.id)}`}
+                      className="rounded-lg px-3 py-2 text-sm text-zinc-400 transition hover:bg-white/5 hover:text-white"
+                      onClick={() => setCategoriesOpen(false)}
+                    >
+                      {categoryTitle(sec.id, t)}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+          </div>
+
+          {mainRoutes.slice(1).map((l) => (
             <Link key={l.href} href={l.href} className="text-sm text-zinc-400 transition hover:text-white">
               {t.nav[l.key]}
             </Link>
@@ -96,9 +143,9 @@ export function Navbar() {
       </div>
 
       {open ? (
-        <div className="border-t border-white/5 bg-surface px-4 py-4 lg:hidden">
+        <div className="max-h-[min(80vh,640px)] overflow-y-auto border-t border-white/5 bg-surface px-4 py-4 lg:hidden">
           <div className="flex flex-col gap-3">
-            {routes.map((l) => (
+            {mainRoutes.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
@@ -108,6 +155,21 @@ export function Navbar() {
                 {t.nav[l.key]}
               </Link>
             ))}
+            <p className="pt-2 text-xs font-semibold uppercase tracking-wider text-zinc-600">
+              {t.nav.categories}
+            </p>
+            <div className="grid grid-cols-2 gap-2">
+              {PORTFOLIO_SECTIONS.map((sec) => (
+                <Link
+                  key={sec.id}
+                  href={`#${sectionAnchor(sec.id)}`}
+                  className="rounded-lg border border-white/5 px-3 py-2 text-xs text-zinc-400"
+                  onClick={() => setOpen(false)}
+                >
+                  {categoryTitle(sec.id, t)}
+                </Link>
+              ))}
+            </div>
             <div className="flex items-center justify-between gap-3 pt-2">
               <SocialLinks variant="icons" />
               <a
