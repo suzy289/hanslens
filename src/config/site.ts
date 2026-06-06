@@ -8,4 +8,5 @@ export const SITE = {
   whatsappPhoneE164: "971524873317",
   /** Affichage lisible dans le footer / UI. */
   whatsappDisplay: "+971 52 487 3317",
+  email: "phudjefabrice@yahoo.fr",
 } as const;

@@ -103,9 +103,9 @@ export function PortfolioSections() {
                       {t.portfolioSections.photosLabel}
                     </p>
                     <div className="flex gap-4 overflow-x-auto pb-2 [scrollbar-width:thin] snap-x snap-mandatory">
-                      {sec.photos.map((file) => (
+                      {sec.photos.map((file, i) => (
                         <div
-                          key={file}
+                          key={`${sec.id}-photo-${i}`}
                           className="snap-center shrink-0"
                           style={{ width: "min(78vw, 360px)" }}
                         >
@@ -132,7 +132,7 @@ export function PortfolioSections() {
                     <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                       {sec.videos.map((file, i) => (
                         <motion.div
-                          key={file}
+                          key={`${sec.id}-video-${i}`}
                           initial={{ opacity: 0, y: 12 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true, margin: "-30px" }}

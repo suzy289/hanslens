@@ -87,7 +87,12 @@ export function Footer() {
               <ul className="mt-4 space-y-3 text-sm">
                 <li>
                   <span className="text-zinc-600">{t.footer.emailLbl}</span>
-                  <span className="text-zinc-300">vous@exemple.com</span>
+                  <a
+                    href={`mailto:${SITE.email}`}
+                    className="text-zinc-300 underline decoration-white/15 underline-offset-4 hover:text-white"
+                  >
+                    {SITE.email}
+                  </a>
                 </li>
                 <li>
                   <span className="text-zinc-600">{t.footer.whatsappLbl}</span>

@@ -1,6 +1,6 @@
 /** Chemins relatifs à `/public` — structure `public/video/HANS/…`. */
 
-import { HOSTABLE_PHOTOS as P, HOSTABLE_VIDEOS as V } from "@/lib/hostable-media";
+import { HOSTABLE_PHOTOS as P, HOSTABLE_VIDEOS as V, SHOWREEL_HOSTABLE } from "@/lib/hostable-media";
 
 export type PortfolioSection = {
   id: string;
@@ -90,9 +90,19 @@ export const PORTFOLIO_SECTIONS: PortfolioSection[] = [
   },
   {
     id: "product-shoot",
-    photos: [P.prodDahlia, P.prodDurrah, P.prodGhala, P.prod002, P.prodDahlia, P.prodGhala],
+    photos: [P.prodDahlia, P.prodDurrah, P.prodGhala, P.prod002],
     videos: [],
   },
+];
+
+/** Tous les fichiers média réellement affichés sur le site. */
+export const ALL_USED_MEDIA_PATHS: readonly string[] = [
+  ...new Set([
+    ...PORTFOLIO_SECTIONS.flatMap((s) => [...s.photos, ...s.videos]),
+    P.rootLogo,
+    P.rootPresentation,
+    SHOWREEL_HOSTABLE,
+  ]),
 ];
 
 export const PORTFOLIO_SECTION_IDS = PORTFOLIO_SECTIONS.map((s) => s.id);
